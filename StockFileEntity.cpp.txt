@@ -1,0 +1,75 @@
+#include <iostream>
+#include <string>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <fstream>
+#include <iomanip>
+#include "FileEntityHeader.hpp"
+
+using namespace std;
+
+bool StockFileEntity::update(string iname, long q)
+{
+
+  fstream finout;
+  char ch;
+  int p,p1;
+  finout.open("stock.csv", ios::out | ios::in);
+  if(!finout)
+  {
+    cout<<"\nStock.csv file not found..";
+    exit(1);
+  }
+  while(!finout.eof())
+  {
+    finout>>itemCode;
+    if(itemCode==iname)
+      {
+         finout.get(ch);
+         p=finout.tellg();
+         finout>>quantity;
+         quantity= quantity+q;
+         p1= (finout.tellg());
+         finout.seekp(-(p1-p),ios::cur);
+         finout<<setfill('0')<<setw(5)<<quantity<<endl;
+         finout.close();
+         return true;
+
+       }
+   }
+
+  finout.close();
+  return false;
+}
+
+long StockFileEntity::select(string iname)
+{
+
+  ifstream fin;
+  char ch;
+  fin.open("stock.csv");
+  if(!fin)
+  {
+    cout<<"\nStock.csv file not found..";
+    exit(1);
+  }
+  while(!fin.eof())
+  {
+    fin>>itemCode;
+    if(itemCode==iname)
+      {
+         fin.get(ch);
+         fin>>quantity;
+         fin.close();
+         return quantity;
+      }
+
+  }
+
+  fin.close();
+  return -1;
+}
+
+
+

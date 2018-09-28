@@ -1,0 +1,28 @@
+runfile.exe: Main.o MainMenu.o AddStock.o ViewStock.o RetailBill.o WholesaleBill.o GenerateReports.o StockController.o StockFileEntity.o PriceFileEntity.o BillController.o ReportController.o
+        g++ -o runfile.exe Main.o MainMenu.o AddStock.o ViewStock.o RetailBill.o WholesaleBill.o GenerateReports.o StockController.o StockFileEntity.o PriceFileEntity.o BillController.o ReportController.o
+Main.o: Main.cpp MainHeader.hpp
+        g++ -c Main.cpp
+MainMenu.o: MainMenu.cpp MainHeader.hpp classname.hpp
+        g++ -c MainMenu.cpp
+AddStock.o: AddStock.cpp classname.hpp ControllerHeader.hpp
+        g++ -c AddStock.cpp
+ViewStock.o: ViewStock.cpp classname.hpp ControllerHeader.hpp
+        g++ -c ViewStock.cpp
+RetailBill.o: RetailBill.cpp classname.hpp  ControllerHeader.hpp
+        g++ -c RetailBill.cpp
+WholesaleBill.o: WholesaleBill.cpp classname.hpp  ControllerHeader.hpp
+        g++ -c WholesaleBill.cpp
+GenerateReports.o: GenerateReports.cpp classname.hpp  ControllerHeader.hpp
+        g++ -c GenerateReports.cpp
+StockController.o: StockController.cpp ControllerHeader.hpp FileEntityHeader.hpp
+        g++ -c StockController.cpp
+StockFileEntity.o: StockFileEntity.cpp FileEntityHeader.hpp
+        g++ -c StockFileEntity.cpp
+PriceFileEntity.o: PriceFileEntity.cpp FileEntityHeader.hpp
+        g++ -c PriceFileEntity.cpp
+BillController.o: BillController.cpp ControllerHeader.hpp FileEntityHeader.hpp
+        g++ -c BillController.cpp
+ReportController.o: ReportController.cpp ControllerHeader.hpp FileEntityHeader.hpp
+        g++ -c ReportController.cpp
+clean:
+        rm -f runfile.exe Main.o MainMenu.o AddStock.o ViewStock.o RetailBill.o WholesaleBill.o GenerateReports.o StockController.o StockFileEntity.o PriceFileEntity.o BillController.o ReportController.o
